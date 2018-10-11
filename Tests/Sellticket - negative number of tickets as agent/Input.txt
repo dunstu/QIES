@@ -1,0 +1,14 @@
+login
+agent
+sellticket
+00000
+logoutlogin
+agent
+createservice
+12345
+20000101
+abc
+sellticket
+12345
+-1
+logout

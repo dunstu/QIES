@@ -1,0 +1,6 @@
+login
+planner
+createservice
+12345
+2000063
+logout
