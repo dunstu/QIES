@@ -1,3 +1,4 @@
+
 import java.util.Scanner;
 
 public class Parser {
@@ -79,6 +80,32 @@ public class Parser {
 		System.out.println("Service Created.");
 	}
 
+	public static void deleteService(){
+		Scanner in = new Scanner(System.in);
+		String temp = "";
+		String[] deleteservice = new String[2];
+		System.out.print("Enter a service number: ");
+		temp = in.nextLine();
+		if(!checkServiceNumber(temp)){
+			System.out.println("Invalid Service number");
+			return;
+		}
+		deleteservice[0] = temp;
+
+		System.out.print("Enter the service name: ");
+		temp = in.nextLine();
+		if(!checkServiceName(temp)){
+			System.out.println("Invalid Service Name");
+			return;
+		}
+		deleteservice[1] = temp;
+
+		temp = "DEL " + deleteservice[0] + " **** " + " ***** " + deleteservice[1] + " " + getServiceDate(deleteservice[0]);
+		//Interface.send(temp);
+		System.out.println(temp);
+		return;
+	}
+
 	public static void sellTicket() {
 		//Contains service number and number of tickets
 		String[] sellticket = new String[2];
@@ -95,70 +122,107 @@ public class Parser {
 		}
 		System.out.print("Enter Quatity to sell: ");
 		temp = in.next();
-		if(checkTicketsQuantity(temp))
-			sellticket[1] = temp;
-
-		
-		String out = "SEL" + " " + sellticket[0] + " " + (4 - sellticket[1].length() * '0') + sellticket[1] + " " + "*****" + " " + getServiceName(sellticket[0]) + " " + getServiceDate(sellticket[0]);
+		if(checkTicketsQuantity(temp)) {
+			if(temp.length() == 1)
+				sellticket[1] = "000" + temp;
+			else if(temp.length() == 2)
+				sellticket[1] = "00" + temp;
+			else if(temp.length() == 3)
+				sellticket[1] = "0" + temp;
+			else
+				sellticket[1] = temp;
+		}
+		String out = "SEL" + " " + sellticket[0] + " " + sellticket[1] + " " + "*****" + " " + getServiceName(sellticket[0]) + " " + getServiceDate(sellticket[0]);
 		System.out.println(out);
 		//Interface.send(out);
 		System.out.println("Ticket(s) sold.");
+		return;
+	}
+
+	public static void cancelTicket(String sessionType, int tickets){
+		Scanner in = new Scanner(System.in);
+		String temp = "";
+		String[] cancelticket = new String[2];
+		System.out.print("Enter a service number: ");
+		temp = in.nextLine();
+		if(!checkServiceNumber(temp)){
+			System.out.println("Invalid Service number");
+			return;
+		}
+		cancelticket[0] = temp;
+
+		System.out.print("Enter the number of tickets: ");
+		temp = in.nextLine();
+
+		if(!checkTicketsQuantity(temp) || (sessionType.equals("agent") && Integer.parseInt(temp) > 10) || (sessionType.equals("agent") && Integer.parseInt(temp) + tickets > 20)){
+			System.out.println("Invalid Ticket Quantity");
+			return;
+		}
+		//NEED TO UPDATE NUMBER OF TICKETS SOLD SOMEHOW
+		cancelticket[1] = temp;
+
+		temp = "CAN " + cancelticket[0] + " " + cancelticket[1] + " ***** " + getServiceName(cancelticket[0]) + " " + getServiceDate(cancelticket[0]);
+		System.out.println(temp);
+		//Interface.send(temp);
 		return;
 	}
 	
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		String s;
+		int cancelledTickets;
 
 		while(true) {
 			System.out.print("Login in as agent/planner: ");
 			s = in.nextLine();
-
+			String sessionType;
 			switch(s) {
 			case "agent":
 				while(true) {
-					System.out.print("Enter a command: createservice, sellticket, cancelticket, changeticket, logout: ");
+					sessionType = "agent";
+					cancelledTickets = 0;
+					System.out.print("Enter a command: sellticket, cancelticket, changeticket, logout: ");
 					s = in.nextLine();
 
 					//Logout Command
-					if(s.equals("logout"))
+					if (s.equals("logout")) {
+						System.out.println("EOS");
+						//Interface.send("EOS");
 						break;
-
-					//CreateService Command
-					if(s.equals("createservice")) {
-						createService();
 					}
 
 					//Sell ticket command
-					if(s.equals("sellticket")) {
-						//Contains service number and number of tickets
-						String[] sellticket = new String[2];
-						String temp;
+					else if (s.equals("sellticket"))
+						sellTicket();
 
-						System.out.print("Enter Service number: ");
-						temp = in.nextLine();
-						if(checkServiceNumber(temp)) 
-							sellticket[0] = temp;
-						else {
-							System.out.println("Invalid Service number");
-							continue;
-						}
-						System.out.print("Enter Quatity to sell: ");
-						s = in.next();
-						if(checkTicketsQuantity(s))
-							sellticket[1] = temp;
-
-						//Interface.send(sellticket[])
-						System.out.println("Ticket(s) sold.");
-					}
+					else if(s.equals("cancelticket"))
+						cancelTicket(sessionType, cancelledTickets);
 				}
-				break;
-			case "planner":	
+
+
+			case "planner":
+				sessionType = "planner";
 				while(true) {
-					System.out.print("Enter a command: createservice, sellticket, cancelticket, changeticket, logout: ");
+					System.out.print("Enter a command: createservice, sellticket, deleteservice, cancelticket, changeticket, logout: ");
 					s = in.nextLine();
-					if(s.equals("logout"))
-						break;	
+
+					//Logout Command
+					if(s.equals("logout")){
+						System.out.println("EOS");
+						//Interface.send("EOS");
+						break;
+					}
+
+					//CreateService Command
+					if(s.equals("createservice"))
+						createService();
+
+					//DeleteService Command
+					if(s.equals("deleteservice"))
+						deleteService();
+
+					if(s.equals("cancelticket"))
+						cancelTicket(sessionType, 0);
 				}
 			}
 		}
