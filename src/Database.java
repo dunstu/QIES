@@ -2,15 +2,15 @@ import java.util.ArrayList;
 
 public class Database {
 
-    ArrayList<String> validServices;
-    ArrayList<String> transactionSummary;
+    private ArrayList<String> validServices;
+    private ArrayList<String> transactionSummary;
 
     public Database() {
         this.readValidServices();
         transactionSummary = new ArrayList<>();
     }
 
-    public void readValidServices() {
+    private void readValidServices() {
 
     }
 
@@ -18,7 +18,11 @@ public class Database {
 
     }
 
-    public void writeTransactionSummary() {
+    private void writeTransactionSummary() {
+
+    }
+
+    public void validateService(String serviceNumber) {
 
     }
 
