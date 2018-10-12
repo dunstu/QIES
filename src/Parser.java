@@ -30,6 +30,17 @@ public class Parser {
 		return true;
 	}
 
+	//DUNCAN NEEDS TO PROVIDE IMPLEMENTATION
+	public static String getServiceName(String s) {
+		
+		return "Service name for: " + s;
+	}
+	
+	//DUNCAN NEEDS TO PROVIDE IMPLEMENTATION
+	public static String getServiceDate(String s) {
+		return "Service date for: " + s;
+	}
+	
 	public static void createService() {
 		Scanner in = new Scanner(System.in);
 		String temp = "";	//Stores line for error checking
@@ -68,7 +79,33 @@ public class Parser {
 		System.out.println("Service Created.");
 	}
 
+	public static void sellTicket() {
+		//Contains service number and number of tickets
+		String[] sellticket = new String[2];
+		String temp, s;
+		Scanner in = new Scanner(System.in);
 
+		System.out.print("Enter Service number: ");
+		temp = in.nextLine();
+		if(checkServiceNumber(temp)) 
+			sellticket[0] = temp;
+		else {
+			System.out.println("Invalid Service number");
+			return;
+		}
+		System.out.print("Enter Quatity to sell: ");
+		temp = in.next();
+		if(checkTicketsQuantity(temp))
+			sellticket[1] = temp;
+
+		
+		String out = "SEL" + " " + sellticket[0] + " " + (4 - sellticket[1].length() * '0') + sellticket[1] + " " + "*****" + " " + getServiceName(sellticket[0]) + " " + getServiceDate(sellticket[0]);
+		System.out.println(out);
+		//Interface.send(out);
+		System.out.println("Ticket(s) sold.");
+		return;
+	}
+	
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		String s;
