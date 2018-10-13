@@ -2,6 +2,7 @@
 import java.util.Scanner;
 
 public class Parser {
+
 	//Checks if date is formatted: YYYYMMDD
 	public static boolean checkDate(String in) {
 		if(in.length() == 8) {
