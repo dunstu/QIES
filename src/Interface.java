@@ -47,8 +47,7 @@ public class Interface {
 
                         //Logout Command
                         if(s.equals("logout")){
-                            System.out.println("EOS");
-                            //Interface.send("EOS");
+                            parser.logout();
                             break;
                         }
                         //CreateService Command
@@ -58,6 +57,10 @@ public class Interface {
                             //DeleteService Command
                         else if(s.equals("deleteservice"))
                             parser.deleteService();
+
+                            //SellTicket Command
+                        else if (s.equals("sellticket"))
+                            parser.sellTicket();
 
                             //ChangeTicket Command
                         else if(s.equals("changeticket"))

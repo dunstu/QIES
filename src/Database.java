@@ -32,17 +32,43 @@ public class Database {
         }
     }
 
-    public void addTransaction(String transactionMessage) {
-        this.transactionSummary.add(transactionMessage);
+    public void addTransaction(String code, String servNum, String numTickets, String destNum, String name, String date) {
+        StringBuilder transactionMessage = new StringBuilder();
+        transactionMessage.append(code).append(" ");
+        if (servNum == null)
+            transactionMessage.append("0000 ");
+        else
+            transactionMessage.append(servNum).append(" ");
+        if (numTickets == null)
+            transactionMessage.append("0 ");
+        else {
+            int len = numTickets.length();
+            for (int i = 0; i < (5-len); i++)
+                transactionMessage.append("0");
+            transactionMessage.append(numTickets).append(" ");
+        }
+        if (destNum == null)
+            transactionMessage.append("0000 ");
+        else
+            transactionMessage.append(destNum).append(" ");
+        if (name == null)
+            transactionMessage.append("**** ");
+        else
+            transactionMessage.append(name).append(" ");
+        if (date == null)
+            transactionMessage.append("0");
+        else
+            transactionMessage.append(date);
+        this.transactionSummary.add(transactionMessage.toString());
     }
 
     public void writeTransactionSummary() {
         Path file = Paths.get("transactionSummary.txt");
         try (BufferedWriter writer = Files.newBufferedWriter(file)) {
             for (String line : this.transactionSummary) {
-                writer.write(line);
+                writer.write(line+"\n");
             }
-            writer.write("EOS");
+            writer.write("EOS\n");
         }
         catch (IOException err) {
             System.err.println("Error writing the transaction summary file:");
@@ -52,14 +78,6 @@ public class Database {
 
     public boolean validateService(String serviceNumber) {
         return validServices.contains(serviceNumber);
-    }
-
-    public String getServiceName(String serviceNumber) {
-        return "ERROR";
-    }
-
-    public String getServiceDate(String serviceNumber) {
-        return "ERROR";
     }
 
 }
