@@ -3,8 +3,14 @@ import java.util.Scanner;
 
 public class Parser {
 
-	//Checks if date is formatted: YYYYMMDD
-	public static boolean checkDate(String in) {
+    private Database database;
+
+	public Parser() {
+	    this.database = new Database();
+    }
+
+    //Checks if date is formatted: YYYYMMDD
+	public boolean checkDate(String in) {
 		if(in.length() == 8) {
 			int year = Integer.parseInt(in.substring(0, 4));
 			int month = Integer.parseInt(in.substring(4, 6));
@@ -17,35 +23,35 @@ public class Parser {
 	}
 
 	//Checks if service name is valid format
-	public static boolean checkServiceName(String in) {
+	public boolean checkServiceName(String in) {
 		if(in.length() >= 3 && in.length() <= 39 && in.charAt(0) != ' ' && in.charAt(in.length() - 1) != ' ')
 			return true;
 		return false;
 	}
 
 	//Checks if service number is valid format
-	public static boolean checkServiceNumber(String in) {
+	public boolean checkServiceNumber(String in) {
 		if(in.length() != 5 || in.charAt(0) == ('0'))
 			return false;
 		return true;
 	}
 
 	//DUNCAN NEEDS TO PROVIDE IMPLEMENTATION
-	private static boolean checkTicketsQuantity(String s) {
+	private boolean checkTicketsQuantity(String s) {
 		return true;
 	}
 
 	//DUNCAN NEEDS TO PROVIDE IMPLEMENTATION
-	public static String getServiceName(String s) {
-		return "Service name for: " + s;
-	}
-	
-	//DUNCAN NEEDS TO PROVIDE IMPLEMENTATION
-	public static String getServiceDate(String s) {
-		return "Service date for: " + s;
+	public String getServiceName(String s) {
+		return database.getServiceName(s);
 	}
 
-	public static void createService() {
+	//DUNCAN NEEDS TO PROVIDE IMPLEMENTATION
+	public String getServiceDate(String s) {
+		return database.getServiceDate(s);
+	}
+
+	public void createService() {
 		Scanner in = new Scanner(System.in);
 		String temp = "";	//Stores line for error checking
 		String[] createService = new String[3];	//Stores 3 elements: Service Number, Date, Service Name
@@ -86,7 +92,7 @@ public class Parser {
 		System.out.println("Service Created.");
 	}
 
-	public static void deleteService(){
+	public void deleteService(){
 		Scanner in = new Scanner(System.in);
 		String temp = "";
 		String[] deleteservice = new String[2];
@@ -112,7 +118,7 @@ public class Parser {
 		return;
 	}
 
-	public static void sellTicket() {
+	public void sellTicket() {
 		//Contains service number and number of tickets
 		String[] sellticket = new String[2];
 		String temp, s;
@@ -145,7 +151,7 @@ public class Parser {
 		return;
 	}
 
-	public static int cancelTicket(String sessionType, int tickets){
+	public int cancelTicket(String sessionType, int tickets){
 		Scanner in = new Scanner(System.in);
 		String temp = "";
 		String[] cancelticket = new String[2];
@@ -176,7 +182,7 @@ public class Parser {
 		return updateTicket;
 	}
 
-	public static int changeTicket(String sessionType, int changedtickets){
+	public int changeTicket(String sessionType, int changedtickets){
 		Scanner in = new Scanner(System.in);
 		String[] changeticket = new String[3]; //Current Service #, New Service #, # of tickets
 		String temp = "";
@@ -215,74 +221,9 @@ public class Parser {
 		System.out.println("Ticket(s) changed");
 		return updateTickets;
 	}
+
+	public void logout() {
+	    database.writeTransactionSummary();
+    }
 	
-	public static void main(String[] args) {
-		Scanner in = new Scanner(System.in);
-		String s;
-		int cancelledTickets = 0;
-		int changedTickets = 0;
-
-		while(true) {
-			System.out.print("Login in as agent/planner: ");
-			s = in.nextLine();
-			String sessionType;
-			switch(s) {
-			case "agent":
-				while(true) {
-					sessionType = "agent";
-					System.out.print("Enter a command: sellticket, cancelticket, changeticket, logout: ");
-					s = in.nextLine();
-
-					//Logout Command
-					if (s.equals("logout")) {
-						System.out.println("EOS");
-						//Interface.send("EOS");
-						break;
-					}
-
-
-					//Sell ticket command
-					else if (s.equals("sellticket"))
-						sellTicket();
-
-					else if(s.equals("changeticket"))
-						changedTickets = changeTicket(sessionType, changedTickets);
-
-					else if(s.equals("cancelticket"))
-						cancelledTickets = cancelTicket(sessionType, cancelledTickets);
-				}
-				break;
-
-			case "planner":
-				sessionType = "planner";
-				while(true) {
-					System.out.print("Enter a command: createservice, sellticket, deleteservice, cancelticket, changeticket, logout: ");
-					s = in.nextLine();
-
-					//Logout Command
-					if(s.equals("logout")){
-						System.out.println("EOS");
-						//Interface.send("EOS");
-						break;
-					}
-					//CreateService Command
-					else if(s.equals("createservice"))
-						createService();
-
-					//DeleteService Command
-					else if(s.equals("deleteservice"))
-						deleteService();
-
-					//ChangeTicket Command
-					else if(s.equals("changeticket"))
-						changeTicket(sessionType, 0);
-
-					//CancelTicket Command
-					else if(s.equals("cancelticket"))
-						cancelTicket(sessionType, 0);
-				}
-				break;
-			}
-		}
-	}
 }
