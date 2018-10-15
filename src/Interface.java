@@ -11,6 +11,7 @@ public class Interface {
         int cancelledTickets = 0;
         int changedTickets = 0;
 
+        // Loop the main logic while the program is active
         while(true) {
             System.out.print("Login in as agent/planner: ");
             s = in.nextLine();

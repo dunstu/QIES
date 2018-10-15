@@ -35,10 +35,12 @@ public class Database {
     public void addTransaction(String code, String servNum, String numTickets, String destNum, String name, String date) {
         StringBuilder transactionMessage = new StringBuilder();
         transactionMessage.append(code).append(" ");
+        // Format service number
         if (servNum == null)
             transactionMessage.append("0000 ");
         else
             transactionMessage.append(servNum).append(" ");
+        // Format ticket quantity
         if (numTickets == null)
             transactionMessage.append("0 ");
         else {
@@ -47,14 +49,17 @@ public class Database {
                 transactionMessage.append("0");
             transactionMessage.append(numTickets).append(" ");
         }
+        // Format destination service number
         if (destNum == null)
             transactionMessage.append("0000 ");
         else
             transactionMessage.append(destNum).append(" ");
+        // Format service name
         if (name == null)
             transactionMessage.append("**** ");
         else
             transactionMessage.append(name).append(" ");
+        // Format service date
         if (date == null)
             transactionMessage.append("0");
         else
