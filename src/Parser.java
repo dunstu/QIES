@@ -15,7 +15,7 @@ public class Parser {
 			int month = Integer.parseInt(in.substring(4, 6));
 			int date = Integer.parseInt(in.substring(6, 8));
 
-			if(year >= 1980 && year <= 2999 && month > 0 && month <= 12 && date > 1 && date <= 31)
+			if(year >= 1980 && year <= 2999 && month > 0 && month <= 12 && date >= 1 && date <= 31)
 				return true;
 		}
 		return false;
@@ -30,7 +30,7 @@ public class Parser {
 
 	//Checks if service number is valid format
 	private boolean checkServiceNumber(String in) {
-		if(in.length() != 5 || in.charAt(0) == ('0'))
+		if(in.length() != 5 || in.charAt(0) == ('0')  || !database.validateService(in))
 			return false;
 		return true;
 	}
