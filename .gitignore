@@ -4,3 +4,4 @@
 /production/
 *.iml
 transactionSummary.txt
+*.class
