@@ -1,0 +1,1 @@
+Sorry, that is an invalid session type.

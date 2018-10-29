@@ -1,0 +1,6 @@
+login
+planner
+createservice
+01234
+logout
+exit

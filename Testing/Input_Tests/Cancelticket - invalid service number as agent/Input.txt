@@ -1,0 +1,6 @@
+login
+agent
+cancelticket
+00000
+logout
+exit

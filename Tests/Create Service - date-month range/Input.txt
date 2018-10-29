@@ -1,6 +1,0 @@
-login
-planner
-createservice
-12345
-20002230
-logout

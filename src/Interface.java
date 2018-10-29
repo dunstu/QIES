@@ -72,6 +72,8 @@ public class Interface {
                             parser.cancelTicket(sessionType, 0);
                     }
                     break;
+                case "exit":
+                    System.exit(0);
             }
         }
     }

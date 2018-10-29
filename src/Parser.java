@@ -112,6 +112,7 @@ public class Parser {
 		// Obtain and validate service number
 		System.out.print("Enter Service number: ");
 		temp = in.nextLine();
+
 		if(checkServiceNumber(temp)) 
 			parameters[0] = temp;
 		else {

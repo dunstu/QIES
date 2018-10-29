@@ -1,0 +1,13 @@
+login
+planner
+createservice
+12345
+20000101
+Toronto
+deleteservice
+12345
+Toronto
+deleteservice
+12345
+Toronto
+exit

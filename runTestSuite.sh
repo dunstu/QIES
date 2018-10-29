@@ -1,27 +1,27 @@
 #!/bin/bash
+
+exe=frontendtest.jar
+
 cd ./src
 
 $(javac -d ../bin Interface.java Parser.java Database.java)
 
 cd ../bin
 
-$(jar cfe frontendtest.jar Interface *)
+$(jar cfe ${exe} Interface *)
 
 cd ../
 
-java -jar bin/frontendtest.jar
+#java -jar bin/frontendtest.jar
 
-cd ./"Tests"
+cd ./"Testing"
 
 file=0
 
-for d in */Input.txt ;
-
+for d in Input_Tests/*/ ;
 do
-  if [ -f "$d" ] ; then
-    file=$((file+1))
-	echo $d
-  fi
+  testname=${d#*/}
+  cat "Input_Tests/${testname}/Input.txt" | $(java -jar ../bin/$exe) > "Output_Tests/${testname}/Output.txt"
 done
 
 

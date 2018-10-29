@@ -1,0 +1,6 @@
+login
+agent
+sellticket
+00000
+logout
+exit
