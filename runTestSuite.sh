@@ -1,12 +1,12 @@
 #!/bin/bash
-cd src
-$(javac Interface.java )
-echo "login
-planner
-createservice
-22222
-19980214
-Duncan
-logout" | $(java -cp . Interface)
-exit
+cd ./src
 
+$(javac -d ../bin Interface.java Parser.java Database.java)
+
+cd ../bin
+
+$(jar cfe frontendtest.jar Interface *)
+
+cd ../
+
+java -jar bin/frontendtest.jar
