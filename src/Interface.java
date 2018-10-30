@@ -1,13 +1,18 @@
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class Interface {
 
     public static String sessionType;
+    private static Scanner in = new Scanner(System.in);
 
     public static void main(String[] args) {
         Parser parser = new Parser();
         String s;
-        Scanner in = new Scanner(System.in);
+        String[] params;
+        String[] prompts;
+        in = new Scanner(System.in);
         int cancelledTickets = 0;
         int changedTickets = 0;
 
@@ -29,14 +34,22 @@ public class Interface {
                             break;
                         }
                         //Sell ticket command
-                        else if (s.equals("sellticket"))
-                            parser.sellTicket();
-
-                        else if(s.equals("changeticket"))
-                            changedTickets = parser.changeTicket(sessionType, changedTickets);
-
-                        else if(s.equals("cancelticket"))
-                            cancelledTickets = parser.cancelTicket(sessionType, cancelledTickets);
+                        else if (s.equals("sellticket")) {
+                            prompts = new String[]{"Enter Service Number: ", "Enter Quantity to Sell: "};
+                            params = getParameters(prompts);
+                            parser.sellTicket(params);
+                        }
+                        else if(s.equals("changeticket")) {
+                            prompts = new String[]{"Enter Service Number: ", "Enter New Service Number: ",
+                                                   "Enter Ticket Quantity to change: "};
+                            params = getParameters(prompts);
+                            changedTickets = parser.changeTicket(sessionType, changedTickets, params);
+                        }
+                        else if(s.equals("cancelticket")) {
+                            prompts = new String[]{"Enter Service Number: ", "Enter number of tickets to cancel: "};
+                            params = getParameters(prompts);
+                            cancelledTickets = parser.cancelTicket(sessionType, cancelledTickets, params);
+                        }
                     }
                     break;
 
@@ -52,30 +65,55 @@ public class Interface {
                             break;
                         }
                         //CreateService Command
-                        else if(s.equals("createservice"))
-                            parser.createService();
-
-                            //DeleteService Command
-                        else if(s.equals("deleteservice"))
-                            parser.deleteService();
-
-                            //SellTicket Command
-                        else if (s.equals("sellticket"))
-                            parser.sellTicket();
-
-                            //ChangeTicket Command
-                        else if(s.equals("changeticket"))
-                            parser.changeTicket(sessionType, 0);
-
-                            //CancelTicket Command
-                        else if(s.equals("cancelticket"))
-                            parser.cancelTicket(sessionType, 0);
+                        else if(s.equals("createservice")) {
+                            prompts = new String[]{"Enter Service Number: ",
+                                                   "Enter Date: ",
+                                                   "Enter a service Name: "};
+                            params = getParameters(prompts);
+                            parser.createService(params);
+                        }
+                        //DeleteService Command
+                        else if(s.equals("deleteservice")) {
+                            prompts = new String[]{"Enter Service Number: ",
+                                                   "Enter Service Name: "};
+                            params = getParameters(prompts);
+                            parser.deleteService(params);
+                        }
+                        //SellTicket Command
+                        else if (s.equals("sellticket")) {
+                            prompts = new String[]{"Enter Service Number: ", "Enter Quantity to Sell: "};
+                            params = getParameters(prompts);
+                            parser.sellTicket(params);
+                        }
+                        //ChangeTicket Command
+                        else if(s.equals("changeticket")) {
+                            prompts = new String[]{"Enter Service Number: ", "Enter New Service Number: ",
+                                    "Enter Ticket Quantity to change: "};
+                            params = getParameters(prompts);
+                            parser.changeTicket(sessionType, changedTickets, params);
+                        }
+                        //CancelTicket Command
+                        else if(s.equals("cancelticket")) {
+                            prompts = new String[]{"Enter Service Number: ", "Enter number of tickets to cancel: "};
+                            params = getParameters(prompts);
+                            parser.cancelTicket(sessionType, cancelledTickets, params);
+                        }
                     }
                     break;
                 case "exit":
                     System.exit(0);
             }
         }
+    }
+
+    private static String[] getParameters(String[] prompts) {
+        int j = 0;
+        for (Iterator<String> i = Arrays.asList(prompts).iterator(); i.hasNext(); ) {
+            System.out.println(i.next());
+            prompts[j] = in.nextLine();
+            j+=1;
+        }
+        return prompts;
     }
 
 }

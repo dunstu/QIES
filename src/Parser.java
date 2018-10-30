@@ -35,37 +35,21 @@ public class Parser {
 		return true;
 	}
 
-	public void createService() {
-		Scanner in = new Scanner(System.in);
-		String temp = "";	//Stores line for error checking
-		String[] parameters = new String[3];	//Stores 3 elements: Service Number, Date, Service Name
-
+	public void createService(String[] parameters) {
 		// Obtain and validate service number
-		System.out.print("Enter Service Number: ");
-		temp = in.nextLine();
-		if(temp.length() != 5 || temp.charAt(0) == ('0')) {
+		if(parameters[0].length() != 5 || parameters[0].charAt(0) == ('0')) {
 			System.out.println("Invalid input, please enter a 5 digit service number that does not begin with 0");
 			return;
 		}
-		else
-			parameters[0] = temp;
 
 		// Obtain and validate date
-		System.out.print("Enter Date: ");
-		temp = in.nextLine();
-		if(checkDate(temp)) 
-			parameters[1] = temp;
-		else {
+		if(!checkDate(parameters[1])) {
 			System.out.println("Invalid Date, must be of form YYYYMMDD");
 			return;
 		}
 
 		// Obtain and validate service name
-		System.out.print("Enter a Service Name: ");
-		temp = in.nextLine();
-		if(checkServiceName(temp))
-			parameters[2] = temp;
-		else {
+		if(!checkServiceName(parameters[2])) {
 			System.out.println("Invalid service name, must be between 3 and 39 characters");
 			return;
 		}
@@ -75,89 +59,51 @@ public class Parser {
 		System.out.println("Service Created.");
 	}
 
-	public void deleteService(){
-		Scanner in = new Scanner(System.in);
-		String temp = "";
-		String[] parameters = new String[2];
-
-		// Obtain and validate service number
-		System.out.print("Enter a service number: ");
-		temp = in.nextLine();
-		if(!checkServiceNumber(temp)){
+	public void deleteService(String[] parameters){
+		// validate service number
+		if(!checkServiceNumber(parameters[0])){
 			System.out.println("Invalid Service number");
 			return;
 		}
-		parameters[0] = temp;
-
-		// Obtain and validate service name
-		System.out.print("Enter the service name: ");
-		temp = in.nextLine();
-		if(!checkServiceName(temp)){
+		// validate service name
+		if(!checkServiceName(parameters[1])){
 			System.out.println("Invalid Service Name");
 			return;
 		}
-		parameters[1] = temp;
-
 		// Add this valid transaction to the database
         database.addTransaction("DEL", parameters[0], null, null, parameters[1], null);
 		System.out.println("Success");
 	}
 
-	public void sellTicket() {
-		//Contains service number and number of tickets
-		String[] parameters = new String[2];
-		String temp;
-		Scanner in = new Scanner(System.in);
-
-		// Obtain and validate service number
-		System.out.print("Enter Service number: ");
-		temp = in.nextLine();
-
-		if(checkServiceNumber(temp)) 
-			parameters[0] = temp;
-		else {
+	public void sellTicket(String[] parameters) {
+		// Validate service number
+		if(!checkServiceNumber(parameters[0])) {
 			System.out.println("Invalid Service number");
 			return;
 		}
-
-		// obtain and validate ticket quantity
-		System.out.print("Enter Quatity to sell: ");
-		temp = in.next();
-		if (temp.matches("[0-9]+"))
-			parameters[1] = temp;
-		else {
+		// Validate ticket quantity
+		if (!parameters[1].matches("[0-9]+")) {
 			System.out.println("Invalid quantity");
 			return;
 		}
-
-		// Add the transaction to the database
+		// Add the valid transaction to the database
 		database.addTransaction("SEL", parameters[0], parameters[1], null, null, null);
 		System.out.println("Ticket(s) sold.");
 	}
 
-	public int cancelTicket(String sessionType, int tickets){
-		Scanner in = new Scanner(System.in);
-		String temp = "";
-		String[] parameters = new String[2];
-
+	public int cancelTicket(String sessionType, int tickets, String[] parameters){
 		// Obtain and validate service number
-		System.out.print("Enter a service number: ");
-		temp = in.nextLine();
-		if(!checkServiceNumber(temp)){
+		if(!checkServiceNumber(parameters[0])){
 			System.out.println("Invalid Service number");
 			return tickets;
 		}
-		parameters[0] = temp;
 
 		// Obtain and validate ticket quantity
-		System.out.print("Enter the number of tickets: ");
-		temp = in.nextLine();
-		if((sessionType.equals("agent") && Integer.parseInt(temp) > 10) || (sessionType.equals("agent") &&
-                Integer.parseInt(temp) + tickets > 20)){
+		if((sessionType.equals("agent") && Integer.parseInt(parameters[1]) > 10) || (sessionType.equals("agent") &&
+                Integer.parseInt(parameters[1]) + tickets > 20)){
 			System.out.println("Invalid Ticket Quantity");
 			return tickets;
 		}
-		parameters[1] = temp;
 
 		// Add the transaction to the database
 		database.addTransaction("CAN", parameters[0], parameters[1], null, null, null);
@@ -167,44 +113,31 @@ public class Parser {
 		return updateTicket;
 	}
 
-	public int changeTicket(String sessionType, int changedtickets){
-		Scanner in = new Scanner(System.in);
-		String[] parameters = new String[3]; //Current Service #, New Service #, # of tickets
-		String temp = "";
-
-		// Obtain and validate service number
-		System.out.print("Enter a Service Number: ");
-		temp = in.nextLine();
-		if(!checkServiceNumber(temp)) {
+	public int changeTicket(String sessionType, int changedtickets, String[] parameters){
+		// validate service number
+		if(!checkServiceNumber(parameters[0])) {
 			System.out.println("Invalid Service Number");
 			return changedtickets;
 		}
-		parameters[0] = temp;
 
-		//obtain and validate destination service number
-		System.out.print("Enter the new Service Number: ");
-		temp = in.nextLine();
-		if(!checkServiceNumber(temp)) {
+		// validate destination service number
+		if(!checkServiceNumber(parameters[1])) {
 			System.out.println("Invalid Service Number");
 			return changedtickets;
 		}
-		parameters[1] = temp;
 
 		// Inform unprivileged user of their max quantity
 		if(sessionType.equals("agent"))
 			System.out.println("MAX changable tickets is: " + (20 - changedtickets));
 
-		//obtain and validate ticket quantity
-		System.out.print("Enter Ticket Quantity to change: ");
-		temp = in.nextLine();
-		if((sessionType.equals("agent") && changedtickets + Integer.parseInt(temp) > 20)){
+		// validate ticket quantity
+		if((sessionType.equals("agent") && changedtickets + Integer.parseInt(parameters[2]) > 20)){
 			System.out.println("Invalid ticket quantity");
 			return changedtickets;
 		}
-		parameters[2] = temp;
 
 		// Record the ticket quantity for unprivileged user
-		int updateTickets = changedtickets + Integer.parseInt(temp);
+		int updateTickets = changedtickets + Integer.parseInt(parameters[2]);
 
 		//add the transaction to the database
 		database.addTransaction("CHG", parameters[0], parameters[2], parameters[1], null, null);
