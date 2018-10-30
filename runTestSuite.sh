@@ -14,7 +14,7 @@ cd ../
 
 #java -jar bin/frontendtest.jar
 
-
+$ tee -a output.txt | java -jar frontendtest.jar | tee -a output.txt
 cd ./"Testing"
 
 :'file=0
