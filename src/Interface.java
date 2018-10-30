@@ -8,6 +8,7 @@ public class Interface {
     private static Scanner in = new Scanner(System.in);
 
     public static void main(String[] args) {
+
         Parser parser = new Parser();
         String s;
         String[] params;
@@ -18,14 +19,14 @@ public class Interface {
 
         // Loop the main logic while the program is active
         while(true) {
-            System.out.print("Login in as agent/planner: ");
+            System.out.print("Login in as agent/planner: \n");
             s = in.nextLine();
 
             switch(s) {
                 case "agent":
                     while(true) {
                         sessionType = "agent";
-                        System.out.print("Enter a command: sellticket, cancelticket, changeticket, logout: ");
+                        System.out.print("Enter a command: sellticket, cancelticket, changeticket, logout: \n");
                         s = in.nextLine();
 
                         //Logout Command
@@ -56,7 +57,7 @@ public class Interface {
                 case "planner":
                     sessionType = "planner";
                     while(true) {
-                        System.out.print("Enter a command: createservice, sellticket, deleteservice, cancelticket, changeticket, logout: ");
+                        System.out.print("Enter a command: createservice, sellticket, deleteservice, cancelticket, changeticket, logout: \n");
                         s = in.nextLine();
 
                         //Logout Command
