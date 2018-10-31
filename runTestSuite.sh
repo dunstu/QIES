@@ -10,7 +10,7 @@ cd ../bin
 
 $(jar cfe ${exe} Interface *)
 
-cd ../
+cd ../d
 
 #java -jar bin/frontendtest.jar
 
