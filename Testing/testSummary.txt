@@ -8,16 +8,13 @@ Pass : Cancelticket - ticket number too high for the session as agent/
 Pass : Cancelticket - valid service ticket number as planner/
 Pass : Cancelticket - valid session ticket number as planner/
 Pass : Changeticket - correct service numbers and ticket number as agent/
-Fail : Changeticket - correct service numbers and ticket number as planner/
+Pass : Changeticket - correct service numbers and ticket number as planner/
 Pass : Changeticket - cumulative ticket number too high as agent/
 Pass : Changeticket - current service number not valid as agent/
 Pass : Changeticket - current service number not valid as planner/
-Fail : Changeticket - new service number not valid as agent/
-Fail : Changeticket - ticket number too high as agent/
-Fail : Changeticket - ticket number too high as planner/
-Fail : Changeticket - ticket number too low as agent/
-Fail : Changeticket - ticket number too low as planner/
-Fail : Changeticket - valid ticket number as planner/
+Pass : Changeticket - new service number not valid as agent/
+Pass : Changeticket - new service number not valid as planner/
+Pass : Changeticket - valid ticket number as planner/
 Pass : Create Service - Correct/
 Pass : Create Service- date-day length/
 Pass : Create Service - date-day range/
