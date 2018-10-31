@@ -10,12 +10,11 @@ cd ../bin
 
 $(jar cfe ${exe} Interface *)
 
-cd ../d
-
 #java -jar bin/frontendtest.jar
 
-cd ./Testing
+cd ../Testing
 
+echo "" > testSummary.txt
 
 for d in Input_Tests/*/ ;
 do
@@ -23,15 +22,17 @@ do
     input="./Input_Tests/$testname/Input.txt"
     expected="./Expected_Tests/$testname/Output.txt"
     output="./Output_Tests/$testname/Output.txt"
-    echo "" > testSummary.txt
 
     echo $testname
 
-    java -jar ../bin/"$exe" < "$input" > "templog.txt"
+    java -jar ../bin/"$exe" < "$input" > "/dev/null"
     cat "transactionSummary.txt" > "$output"
     diff "$expected" "$output" > "/dev/null"
-
-    if (( $? == 0 )); then
+    return=$?
+    
+    echo $return 
+    
+    if (( $return == 0 )); then
         echo "Pass : $testname" >> testSummary.txt
     else
         echo "Fail : $testname" >> testSummary.txt
