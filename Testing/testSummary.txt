@@ -37,13 +37,13 @@ Fail : Create Service-service number difference/
 Fail : Delete Service-Correct/
 Fail : Delete Service-User status/
 Fail : Delete Service-allowed transaction/
-Fail : Login - invalid session type/
-Fail : Login - login before logout as planner/
-Fail : Login - login before logout at agent/
-Fail : Login - successful agent login/
-Fail : Login - successful planner/
-Fail : Logout - Correct as agent/
-Fail : Logout - Correct as planner/
+Pass : Login - invalid session type/
+Pass : Login - login before logout as planner/
+Pass : Login - login before logout at agent/
+Pass : Login - successful agent login/
+Pass : Login - successful planner/
+Pass : Logout - Correct as agent/
+Pass : Logout - Correct as planner/
 Pass : Logout - allowed transaction/
 Pass : Logout - use condition/
 Pass : Sellticket - invalid service number as agent/
