@@ -2,5 +2,6 @@ login
 agent
 cancelticket
 00000
+0
 logout
 exit
