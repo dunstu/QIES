@@ -56,7 +56,7 @@ public class Parser {
 
 		// Add the transaction the database
 		database.addTransaction("CRE", parameters[0], null, null, parameters[2], parameters[1]);
-		System.out.println("Service Created.");
+		//System.out.println("Service Created.");
 	}
 
 	public void deleteService(String[] parameters){
@@ -72,7 +72,7 @@ public class Parser {
 		}
 		// Add this valid transaction to the database
         database.addTransaction("DEL", parameters[0], null, null, parameters[1], null);
-		System.out.println("Success");
+		//System.out.println("Success");
 	}
 
 	public void sellTicket(String[] parameters) {
@@ -88,7 +88,7 @@ public class Parser {
 		}
 		// Add the valid transaction to the database
 		database.addTransaction("SEL", parameters[0], parameters[1], null, null, null);
-		System.out.println("Ticket(s) sold.");
+		//System.out.println("Ticket(s) sold.");
 	}
 
 	public int cancelTicket(String sessionType, int tickets, String[] parameters){
@@ -141,7 +141,7 @@ public class Parser {
 
 		//add the transaction to the database
 		database.addTransaction("CHG", parameters[0], parameters[2], parameters[1], null, null);
-		System.out.println("Ticket(s) changed");
+		//System.out.println("Ticket(s) changed");
 		return updateTickets;
 	}
 
