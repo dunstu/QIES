@@ -72,6 +72,7 @@ public class Parser {
 		}
 		// Add this valid transaction to the database
         database.addTransaction("DEL", parameters[0], null, null, parameters[1], null);
+        database.addToDeletedServices(parameters[0]);
 		//System.out.println("Success");
 	}
 

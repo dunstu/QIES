@@ -6,4 +6,5 @@ Toronto
 deleteservice
 12345
 Toronto
+logout
 exit
