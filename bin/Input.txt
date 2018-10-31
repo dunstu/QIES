@@ -1,9 +1,0 @@
-agent
-sellticket
-12345
-100
-cancelticket
-12345
-1
-logout
-exit

@@ -1,0 +1,106 @@
+Cancelticket - correct service number as agent/
+1
+Cancelticket - correct service number as planner/
+1
+Cancelticket - invalid service number as agent/
+1
+Cancelticket -invalid service number as planner/
+1
+Cancelticket - ticket number too high for the service as agent/
+1
+Cancelticket - ticket number too high for the session as agent/
+1
+Cancelticket - valid service ticket number as planner/
+1
+Cancelticket - valid session ticket number as planner/
+1
+Changeticket - correct service numbers and ticket number as agent/
+1
+Changeticket - correct service numbers and ticket number as planner/
+1
+Changeticket - cumulative ticket number too high as agent/
+1
+Changeticket - current service number not valid as agent/
+1
+Changeticket - current service number not valid as planner/
+1
+Changeticket - new service number not valid as agent/
+1
+Changeticket - new service number not valid as planner/
+1
+Changeticket - ticket number too high as agent/
+1
+Changeticket - ticket number too high as planner/
+1
+Changeticket - ticket number too low as agent/
+1
+Changeticket - ticket number too low as planner/
+1
+Changeticket - valid ticket number as planner/
+1
+Create Service - Correct/
+1
+Create Service- date-day length/
+1
+Create Service - date-day range/
+1
+Create Service-date format/
+1
+Create Service- date-month length/
+1
+Create Service - date-month range/
+1
+Create Service- date-year length/
+1
+Create Service - date-year range/
+1
+Create Service-new service name beginning/
+1
+Create Service-new service name end/
+1
+Create Service-new service name length/
+1
+Create Service- service number beginning/
+1
+Create Service-service number difference/
+1
+Create Service - Service number length/
+1
+Create Service - User Status/
+1
+Delete Service-allowed transaction/
+1
+Delete Service-Correct/
+1
+Delete Service-User status/
+1
+Login - invalid session type/
+1
+Login - login before logout as planner/
+1
+Login - login before logout at agent/
+1
+Login - successful agent login/
+1
+Login - successful planner/
+1
+Logout - allowed transaction/
+1
+Logout - Correct as agent/
+1
+Logout - Correct as planner/
+1
+Logout - use condition/
+1
+Sellticket - invalid service number as agent/
+1
+Sellticket - invalid service number as planner/
+1
+Sellticket - negative number of tickets as agent/
+0
+Sellticket - negative number of tickets as planner/
+0
+sellticket - successful input as agent/
+1
+sellticket - successful input as planner/
+1

@@ -37,21 +37,18 @@ public class Database {
         transactionMessage.append(code).append(" ");
         // Format service number
         if (servNum == null)
-            transactionMessage.append("0000 ");
+            transactionMessage.append("00000 ");
         else
             transactionMessage.append(servNum).append(" ");
         // Format ticket quantity
         if (numTickets == null)
             transactionMessage.append("0 ");
         else {
-            int len = numTickets.length();
-            for (int i = 0; i < (5-len); i++)
-                transactionMessage.append("0");
             transactionMessage.append(numTickets).append(" ");
         }
         // Format destination service number
         if (destNum == null)
-            transactionMessage.append("0000 ");
+            transactionMessage.append("00000 ");
         else
             transactionMessage.append(destNum).append(" ");
         // Format service name

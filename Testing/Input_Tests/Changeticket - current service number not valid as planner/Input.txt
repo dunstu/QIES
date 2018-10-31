@@ -4,6 +4,8 @@ sellticket
 12345
 1
 changeticket
-00000
+11111
+22222
+5
 logout
 exit
