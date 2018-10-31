@@ -20,22 +20,22 @@ Fail : Changeticket - ticket number too low as agent/
 Fail : Changeticket - ticket number too low as planner/
 Fail : Changeticket - valid ticket number as planner/
 Pass : Create Service - Correct/
-Fail : Create Service - Service number length/
-Fail : Create Service - User Status/
-Fail : Create Service - date-day range/
-Fail : Create Service - date-month range/
-Fail : Create Service - date-year range/
-Fail : Create Service- date-day length/
-Fail : Create Service- date-month length/
-Fail : Create Service- date-year length/
-Fail : Create Service- service number beginning/
-Fail : Create Service-date format/
-Fail : Create Service-new service name beginning/
-Fail : Create Service-new service name end/
-Fail : Create Service-new service name length/
-Fail : Create Service-service number difference/
-Fail : Delete Service-Correct/
-Fail : Delete Service-User status/
+Pass : Create Service - Service number length/
+Pass : Create Service - User Status/
+Pass : Create Service - date-day range/
+Pass : Create Service - date-month range/
+Pass : Create Service - date-year range/
+Pass : Create Service- date-day length/
+Pass : Create Service- date-month length/
+Pass : Create Service- date-year length/
+Pass : Create Service- service number beginning/
+Pass : Create Service-date format/
+Pass : Create Service-new service name beginning/
+Pass : Create Service-new service name end/
+Pass : Create Service-new service name length/
+Pass : Create Service-service number difference/
+Pass : Delete Service-Correct/
+Pass : Delete Service-User status/
 Fail : Delete Service-allowed transaction/
 Pass : Login - invalid session type/
 Pass : Login - login before logout as planner/
