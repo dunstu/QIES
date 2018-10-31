@@ -45,10 +45,6 @@ public class Database {
             transactionMessage.append("0 ");
         else {
             transactionMessage.append(numTickets).append(" ");
-            //int len = numTickets.length();
-            //for (int i = 0; i < (5-len); i++)
-            //   transactionMessage.append("0");
-            //transactionMessage.append(numTickets).append(" ");
         }
         // Format destination service number
         if (destNum == null)
