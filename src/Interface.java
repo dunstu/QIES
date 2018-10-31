@@ -51,6 +51,9 @@ public class Interface {
                             params = getParameters(prompts);
                             cancelledTickets = parser.cancelTicket(sessionType, cancelledTickets, params);
                         }
+                        else if (s.equals("exit")){
+                            System.exit(0);
+                        }
                     }
                     break;
 
@@ -98,10 +101,15 @@ public class Interface {
                             prompts = new String[]{"Enter Service Number: ", "Enter number of tickets to cancel: "};
                             params = getParameters(prompts);
                             parser.cancelTicket(sessionType, cancelledTickets, params);
+
+                        }
+                        else if (s.equals("exit")) {
+                            System.exit(0);
                         }
                     }
                     break;
                 case "exit":
+                    in.nextLine();
                     System.exit(0);
             }
         }

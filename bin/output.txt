@@ -1,0 +1,9 @@
+Login in as agent/planner: 
+Enter a command: sellticket, cancelticket, changeticket, logout: 
+Enter Service Number: 
+Enter Quantity to Sell: 
+Enter a command: sellticket, cancelticket, changeticket, logout: 
+Enter Service Number: 
+Enter number of tickets to cancel: 
+Enter a command: sellticket, cancelticket, changeticket, logout: 
+Login in as agent/planner: 
