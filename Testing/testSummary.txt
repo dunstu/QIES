@@ -1,18 +1,17 @@
 
 Pass : Cancelticket - correct service number as agent/
 Pass : Cancelticket - correct service number as planner/
-Fail : Cancelticket - invalid service number as agent/
-Fail : Cancelticket -invalid service number as planner/
-Fail : Cancelticket - ticket number too high for the service as agent/
-Fail : Cancelticket - ticket number too high for the session as agent/
-Fail : Cancelticket - valid service ticket number as planner/
-Fail : Cancelticket - valid session ticket number as planner/
-Fail : Changeticket - correct service numbers and ticket number as agent/
-Fail : Changeticket - correct service numbers and ticket number as planner/
-Fail : Changeticket - cumulative ticket number too high as agent/
-Pass : Changeticket - current service number not valid as agent/
-Pass : Changeticket - current service number not valid as planner/
-Fail : Changeticket - new service number not valid as agent/
+Pass : Cancelticket - invalid service number as agent/
+Pass : Cancelticket - ticket number too high for the service as agent/
+Pass : Cancelticket - ticket number too high for the session as agent/
+Pass : Cancelticket - valid service ticket number as planner/
+Pass : Cancelticket - valid session ticket number as planner/
+Pass : Cancelticket -invalid service number as planner/
+Pass : Changeticket - correct service numbers and ticket number as agent/
+Pass : Changeticket - correct service numbers and ticket number as planner/
+Pass : Changeticket - cumulative ticket number too high as agent/
+Fail : Changeticket - current service number not valid as agent/
+Fail : Changeticket - current service number not valid as planner/
 Fail : Changeticket - new service number not valid as planner/
 Fail : Changeticket - ticket number too high as agent/
 Fail : Changeticket - ticket number too high as planner/
