@@ -1,1 +1,2 @@
-Success
+SEL 12345 1 00000 abc 20000101
+EOS

@@ -1,9 +1,5 @@
 login
 planner
-createservice
-12345
-20000101
-abc
 sellticket
 12345
 -1

@@ -1,9 +1,5 @@
 login
 agent
-createservice
-12345
-20000101
-abc
 sellticket
 12345
 30

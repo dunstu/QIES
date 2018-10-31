@@ -6,5 +6,7 @@ createservice
 Toronto
 createservice
 12345
+20000101
+abc
 logout
 exit

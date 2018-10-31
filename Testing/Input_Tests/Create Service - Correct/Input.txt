@@ -2,6 +2,7 @@ login
 planner
 createservice
 12345
-20000630Toronto
+20000630
+Toronto
 logout
 exit

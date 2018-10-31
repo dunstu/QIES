@@ -42,7 +42,7 @@ public class Interface {
                         }
                         else if(s.equals("changeticket")) {
                             prompts = new String[]{"Enter Service Number: ", "Enter New Service Number: ",
-                                                   "Enter Ticket Quantity to change: "};
+                                    "Enter Ticket Quantity to change: "};
                             params = getParameters(prompts);
                             changedTickets = parser.changeTicket(sessionType, changedTickets, params);
                         }
@@ -68,15 +68,15 @@ public class Interface {
                         //CreateService Command
                         else if(s.equals("createservice")) {
                             prompts = new String[]{"Enter Service Number: ",
-                                                   "Enter Date: ",
-                                                   "Enter a service Name: "};
+                                    "Enter Date: ",
+                                    "Enter a service Name: "};
                             params = getParameters(prompts);
                             parser.createService(params);
                         }
                         //DeleteService Command
                         else if(s.equals("deleteservice")) {
                             prompts = new String[]{"Enter Service Number: ",
-                                                   "Enter Service Name: "};
+                                    "Enter Service Name: "};
                             params = getParameters(prompts);
                             parser.deleteService(params);
                         }
