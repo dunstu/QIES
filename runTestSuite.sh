@@ -14,12 +14,6 @@ cd ../
 
 #java -jar bin/frontendtest.jar
 
-cd ./"Testing"
+cd ./Testing/Input_tests
 
-file=0
 
-for d in Input_Tests/*/ ;
-do
-  testname=${d#*/}
-  cat "Input_Tests/${testname}/Input.txt" | $(java -jar ../bin/$exe) > "Output_Tests/${testname}/Output.txt"
-done

@@ -1,0 +1,9 @@
+Login in as agent/planner: 	agent
+Enter a command: sellticket, cancelticket, changeticket, logout: 	sellticket
+Enter Service Number: 	12345
+Enter Quantity to Sell: 	100
+Enter a command: sellticket, cancelticket, changeticket, logout: 	cancelticket
+Enter Service Number: 	12345
+Enter number of tickets to cancel: 	1
+Enter a command: sellticket, cancelticket, changeticket, logout: 	logout
+Login in as agent/planner: 	exit
