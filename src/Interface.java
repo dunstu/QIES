@@ -109,7 +109,6 @@ public class Interface {
                     }
                     break;
                 case "exit":
-                    in.nextLine();
                     System.exit(0);
             }
         }
