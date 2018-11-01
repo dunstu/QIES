@@ -10,11 +10,17 @@ public class Database {
 
     private ArrayList<String> validServices;
     private ArrayList<String> transactionSummary;
+    private ArrayList<String> deletedServices;
 
     public Database() {
         this.validServices = new ArrayList<>();
         this.readValidServices();
+        this.deletedServices = new ArrayList<>();
         transactionSummary = new ArrayList<>();
+    }
+
+    public void addToDeletedServices(String serviceNumber) {
+        this.deletedServices.add(serviceNumber);
     }
 
     private void readValidServices() {
@@ -79,7 +85,7 @@ public class Database {
     }
 
     public boolean validateService(String serviceNumber) {
-        return validServices.contains(serviceNumber);
+        return validServices.contains(serviceNumber) && !deletedServices.contains(serviceNumber);
     }
 
 }
