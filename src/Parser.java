@@ -149,5 +149,9 @@ public class Parser {
 	public void logout() {
 	    database.writeTransactionSummary();
     }
+
+    public void writeEOS() {
+        database.writeEOS();
+    }
 	
 }

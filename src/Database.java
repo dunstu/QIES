@@ -5,6 +5,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 
 public class Database {
 
@@ -17,6 +19,14 @@ public class Database {
         this.readValidServices();
         this.deletedServices = new ArrayList<>();
         transactionSummary = new ArrayList<>();
+        Path file = Paths.get("transactionSummary.txt");
+        try (BufferedWriter writer = Files.newBufferedWriter(file)) {
+            writer.write("");
+        }
+        catch (IOException err) {
+            System.err.println("Error initializing transaction summary:");
+            System.err.println(err.getMessage());
+        }
     }
 
     public void addToDeletedServices(String serviceNumber) {
@@ -76,7 +86,18 @@ public class Database {
             for (String line : this.transactionSummary) {
                 writer.write(line+"\n");
             }
-            writer.write("EOS\n");
+        }
+        catch (IOException err) {
+            System.err.println("Error writing the transaction summary file:");
+            System.err.println(err.getMessage());
+        }
+    }
+    
+    public void writeEOS() {
+        try(FileWriter fw = new FileWriter("transactionSummary.txt", true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter out = new PrintWriter(bw)) {
+            out.write("EOS\n");
         }
         catch (IOException err) {
             System.err.println("Error writing the transaction summary file:");

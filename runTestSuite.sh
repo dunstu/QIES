@@ -22,6 +22,7 @@ do
     input="./Input_Tests/$testname/Input.txt"
     expected="./Expected_Tests/$testname/Output.txt"
     output="./Output_Tests/$testname/Output.txt"
+    echo "" > transactionSummary.txt
 
     echo $testname
 

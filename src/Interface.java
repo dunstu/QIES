@@ -52,6 +52,8 @@ public class Interface {
                             cancelledTickets = parser.cancelTicket(sessionType, cancelledTickets, params);
                         }
                         else if (s.equals("exit")){
+                            parser.logout();
+                            parser.writeEOS();
                             System.exit(0);
                         }
                     }
@@ -104,11 +106,14 @@ public class Interface {
 
                         }
                         else if (s.equals("exit")) {
+                            parser.logout();
+                            parser.writeEOS();
                             System.exit(0);
                         }
                     }
                     break;
                 case "exit":
+                    parser.writeEOS();
                     System.exit(0);
             }
         }
