@@ -6,3 +6,4 @@ transactionSummary.txt
 *.class
 *.jar
 /Testing/Output_Tests/*/Output.txt
+Testing/testSummary.txt
