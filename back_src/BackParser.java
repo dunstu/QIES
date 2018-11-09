@@ -23,32 +23,32 @@ public class BackParser {
                 case "CRE":
                     if(data.serviceNumberExists(serviceNum1)){
                         System.out.println("Error: Service Number Already Exists");
-                        return;
+                        break;
                     }
                     Service s = new Service(serviceNum1, 1000, 0, serviceName);
                     data.addCentralService(s);
-                    return;
+                    break;
+
                 case "DEL":
                     Service serviceDel = data.findService(serviceNum1);
-                    if(serviceDel.getServiceName().equals(serviceName)) {
-                        serviceDel.zeroTickets();
-                        return;
+                    if(serviceDel.getServiceName().equals(serviceName) && serviceDel.getTicketsSold() == 0) {
+                            data.centralServices.remove(serviceDel);
                     }
-
+                    break;
+                    
                 case "SEL":
                     Service service1Sell = data.findService(serviceNum1);
                     if(service1Sell.validateTicketsSold(numTickets)) {
                         service1Sell.sellTickets(numTickets);
                     }
-                    return;
+                    break;
 
                 case "CAN":
                     Service service1Cancel = data.findService(serviceNum1);
                     if(service1Cancel.validateTicketsChanged(numTickets)){
                         service1Cancel.changeTickets(numTickets);
                     }
-                    return;
-
+                    break;
 
                 case "CHG":
                     Service service1 = data.findService(serviceNum1);
@@ -57,7 +57,7 @@ public class BackParser {
                         service1.changeTickets(numTickets);
                         service2.sellTickets(numTickets);
                     }
-                    return;
+                    break;
                 case "EOS":
                     break;
             }
