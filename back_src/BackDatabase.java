@@ -18,6 +18,14 @@ public class BackDatabase {
 
     }
 
+    public void serviceNumberExists(String input){
+        for(service : centralServices){
+            if(service.getServiceNumber().equals(input))
+                return true;
+        }
+        return false;
+    }
+
     private void readMergedTransactionSummary() {
 
     }
