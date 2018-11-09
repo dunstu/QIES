@@ -59,7 +59,7 @@ public class BackParser {
                     }
                     return;
                 case "EOS":
-                    return;
+                    break;
             }
         }
 
