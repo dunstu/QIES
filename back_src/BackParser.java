@@ -14,13 +14,6 @@ public class BackParser {
             Integer numTickets = Integer.parseInt(transactionParts[2]);
             String serviceNum2 = transactionParts[3];
             String serviceName = transactionParts[4];
-            //CCC AAAA MMMM BBBB NNNNNN YYYYMMDD
-            //CCC = Transaction type
-            //AAAA = Source service number
-            //MMMM = Number of tickets
-            //BBBB = Destination service number
-            //NNNNNN = Service Name
-            //YYYYMMDD = Service Date
 
             switch (transType) {
                 case "CRE":
