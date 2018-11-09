@@ -40,8 +40,14 @@ public class BackParser {
                     if(service1Sell.validateTicketsSold(numTickets)) {
                         service1Sell.sellTickets(numTickets);
                     }
+                    return;
 
                 case "CAN":
+                    Service service1Cancel = data.findService(serviceNum1);
+                    if(service1Cancel.validateTicketsChanged(numTickets)){
+                        service1Cancel.changeTickets(numTickets);
+                    }
+                    return;
 
 
                 case "CHG":
@@ -51,6 +57,7 @@ public class BackParser {
                         service1.changeTickets(numTickets);
                         service2.sellTickets(numTickets);
                     }
+                    return;
                 case "EOS":
                     return;
             }
