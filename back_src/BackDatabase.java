@@ -16,9 +16,6 @@ public class BackDatabase {
         mergedTransactionSummary = new ArrayList<>();
         readCentralServicesFile();
         readMergedTransactionSummary();
-
-        System.out.println(centralServices);
-        System.out.println(mergedTransactionSummary);
     }
 
     public void addCentralService(String num, String capacity, String tickets, String name) {

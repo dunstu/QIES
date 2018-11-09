@@ -18,7 +18,7 @@ public class BackParser {
             switch (transType) {
                 case "CRE":
                     if(data.serviceNumberExists(serviceNum1)){
-                        System.out.println("Error: Service Number Already Exists");
+                        System.out.println(String.format("Error: Service Number %s Already Exists", serviceNum1));
                         break;
                     }
                     Service s = new Service(serviceNum1, 1000, 0, serviceName);
