@@ -35,7 +35,7 @@ public class BackParser {
                             data.centralServices.remove(serviceDel);
                     }
                     break;
-                    
+
                 case "SEL":
                     Service service1Sell = data.findService(serviceNum1);
                     if(service1Sell.validateTicketsSold(numTickets)) {
