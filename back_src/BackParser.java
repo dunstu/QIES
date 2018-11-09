@@ -6,6 +6,9 @@ public class BackParser {
 
         for (String transaction : data.mergedTransactionSummary) {
             transactionParts = transaction.split(" ");
+            if (transactionParts[0].equals("EOS"))
+                break;
+
             String transType = transactionParts[0];
             String serviceNum1 = transactionParts[1];
             Integer numTickets = Integer.parseInt(transactionParts[2]);
@@ -57,8 +60,6 @@ public class BackParser {
                         service1.changeTickets(numTickets);
                         service2.sellTickets(numTickets);
                     }
-                    break;
-                case "EOS":
                     break;
             }
         }

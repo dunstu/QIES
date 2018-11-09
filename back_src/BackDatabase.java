@@ -1,3 +1,9 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class BackDatabase {
@@ -6,8 +12,13 @@ public class BackDatabase {
     public ArrayList<String> mergedTransactionSummary;
 
     public BackDatabase(){
+        centralServices = new ArrayList<>();
+        mergedTransactionSummary = new ArrayList<>();
         readCentralServicesFile();
         readMergedTransactionSummary();
+
+        System.out.println(centralServices);
+        System.out.println(mergedTransactionSummary);
     }
 
     public void addCentralService(String num, String capacity, String tickets, String name) {
@@ -19,6 +30,21 @@ public class BackDatabase {
     }
 
     private void readCentralServicesFile() {
+        Path file = Paths.get("centralServices.txt");
+        String line;
+        String[] attributes;
+        try (BufferedReader reader = Files.newBufferedReader(file)) {
+            line = reader.readLine();
+            while (line != null) {
+                attributes = line.split(" ");
+                this.centralServices.add(new Service(attributes[0], attributes[1], attributes[2], attributes[3]));
+                line = reader.readLine();
+            }
+        }
+        catch (IOException err) {
+            System.err.println("Error reading in valid services file:");
+            System.err.println(err.getMessage());
+        }
 
     }
 
@@ -31,14 +57,46 @@ public class BackDatabase {
     }
 
     private void readMergedTransactionSummary() {
-
+        Path file = Paths.get("transactionSummary.txt");
+        String line;
+        try (BufferedReader reader = Files.newBufferedReader(file)) {
+            line = reader.readLine();
+            while (line != null) {
+                this.mergedTransactionSummary.add(line);
+                line = reader.readLine();
+            }
+        }
+        catch (IOException err) {
+            System.err.println("Error reading in valid services file:");
+            System.err.println(err.getMessage());
+        }
     }
 
     public void writeCentralServicesFile() {
-
+        Path file = Paths.get("newCentralServices.txt");
+        try (BufferedWriter writer = Files.newBufferedWriter(file)) {
+            for (Service line : this.centralServices) {
+                writer.write(line+"\n");
+            }
+        }
+        catch (IOException err) {
+            System.err.println("Error writing the transaction summary file:");
+            System.err.println(err.getMessage());
+        }
     }
 
     public void writeValidServicesFile() {
+        Path file = Paths.get("validServices.txt");
+        try (BufferedWriter writer = Files.newBufferedWriter(file)) {
+            for (Service line : this.centralServices) {
+                writer.write(line.getServiceNumber()+"\n");
+            }
+            writer.write("00000\n");
+        }
+        catch (IOException err) {
+            System.err.println("Error writing the transaction summary file:");
+            System.err.println(err.getMessage());
+        }
 
     }
 
@@ -51,6 +109,5 @@ public class BackDatabase {
         }
         return null;
     }
-
 
 }
