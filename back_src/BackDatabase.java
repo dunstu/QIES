@@ -14,12 +14,16 @@ public class BackDatabase {
         centralServices.add(new Service(num, capacity, tickets, name));
     }
 
+    public void addCentralService(Service service) {
+        centralServices.add(service);
+    }
+
     private void readCentralServicesFile() {
 
     }
 
-    public void serviceNumberExists(String input){
-        for(service : centralServices){
+    public boolean serviceNumberExists(String input){
+        for(Service service : centralServices){
             if(service.getServiceNumber().equals(input))
                 return true;
         }
