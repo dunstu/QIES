@@ -7,3 +7,5 @@ transactionSummary.txt
 *.jar
 /Testing/Output_Tests/*/Output.txt
 Testing/testSummary.txt
+newCentralServices.txt
+validServices.txt

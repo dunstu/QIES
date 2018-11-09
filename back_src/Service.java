@@ -39,11 +39,6 @@ public class Service {
         this.ticketsSold -= ticketsChanged;
     }
 
-    //Service to set tickets sold to 0
-    public void zeroTickets(){
-        this.ticketsSold = 0;
-    }
-
     // Check if selling tickets violates any of the contraints
     public boolean validateTicketsSold(Integer newTickets) {
         // Check if number of tickets being sold is negative
@@ -75,6 +70,11 @@ public class Service {
 
     public String getServiceNumber() {
         return serviceNumber;
+    }
+
+    public String toString() {
+        return String.format("%s %d %d %s",
+                serviceNumber, serviceCapacity, ticketsSold, serviceName);
     }
 
 }
