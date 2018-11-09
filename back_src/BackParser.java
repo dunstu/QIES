@@ -6,9 +6,11 @@ public class BackParser {
 
         for (String transaction : data.mergedTransactionSummary) {
             transactionParts = transaction.split(" ");
+            String transType = transactionParts[0];
             String serviceNum1 = transactionParts[1];
             Integer numTickets = Integer.parseInt(transactionParts[2]);
             String serviceNum2 = transactionParts[3];
+            String serviceName = transactionParts[4];
             //CCC AAAA MMMM BBBB NNNNNN YYYYMMDD
             //CCC = Transaction type
             //AAAA = Source service number
@@ -16,20 +18,31 @@ public class BackParser {
             //BBBB = Destination service number
             //NNNNNN = Service Name
             //YYYYMMDD = Service Date
-            switch (transactionParts[0]) {
+
+            switch (transType) {
                 case "CRE":
-                    if(data.serviceNumberExists(transactionParts[1])){
+                    if(data.serviceNumberExists(serviceNum1)){
                         System.out.println("Error: Service Number Already Exists");
                         return;
                     }
-                    Service s = new Service(transactionParts[1], 1000, 0, transactionParts[4]);
+                    Service s = new Service(serviceNum1, 1000, 0, serviceName);
                     data.addCentralService(s);
                     return;
                 case "DEL":
+                    Service serviceDel = data.findService(serviceNum1);
+                    if(serviceDel.getServiceName().equals(serviceName)) {
+                        serviceDel.zeroTickets();
+                        return;
+                    }
 
                 case "SEL":
+                    Service service1Sell = data.findService(serviceNum1);
+                    if(service1Sell.validateTicketsSold(numTickets)) {
+                        service1Sell.sellTickets(numTickets);
+                    }
 
                 case "CAN":
+
 
                 case "CHG":
                     Service service1 = data.findService(serviceNum1);
@@ -39,7 +52,7 @@ public class BackParser {
                         service2.sellTickets(numTickets);
                     }
                 case "EOS":
-
+                    return;
             }
         }
 
