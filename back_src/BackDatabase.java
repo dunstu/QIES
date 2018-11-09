@@ -30,4 +30,15 @@ public class BackDatabase {
 
     }
 
+    // Finds a service by service number
+    public Service findService(String serviceNum) {
+        for (Service service : centralServices) {
+            if (service.getServiceNumber().equals(serviceNum)) {
+                return service;
+            }
+        }
+        return null;
+    }
+
+
 }

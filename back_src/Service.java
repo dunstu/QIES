@@ -29,12 +29,39 @@ public class Service {
         return ticketsSold;
     }
 
+    // Service is selling tickets
     public void sellTickets(Integer newTickets) {
+        this.ticketsSold += ticketsSold;
+    }
+
+    // Service has its tickets being changed to another service
+    public void changeTickets(Integer ticketsChanged) {
+        this.ticketsSold -= ticketsChanged;
+    }
+
+    // Check if selling tickets violates any of the contraints
+    public boolean validateTicketsSold(Integer newTickets) {
+        // Check if number of tickets being sold is negative
+        if (newTickets < 0) {
+            System.err.println("Error: Cannot sell negative number of tickets.");
+            return false;
+        }
+        // Check if number of tickets being sold would exceed the service capacity
         if (newTickets + this.ticketsSold > this.serviceCapacity) {
             System.err.println("Error: More tickets sold than service has capacity for.");
-            return;
+            return false;
         }
-        this.ticketsSold += ticketsSold;
+        return true;
+    }
+
+    // Check if changing tickets violates any of the constraints
+    public boolean validateTicketsChanged(Integer ticketsChanged) {
+        // Check if the number of tickets being changed exceeds the number of tickets the service has already sold
+        if (ticketsChanged > this.ticketsSold) {
+            System.err.println("Error: Changing for tickets than service has available.");
+            return false;
+        }
+        return true;
     }
 
     public String getServiceName() {
