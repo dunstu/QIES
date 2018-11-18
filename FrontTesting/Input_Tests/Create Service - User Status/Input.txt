@@ -1,5 +1,0 @@
-login
-agent
-createservice
-logout
-exit

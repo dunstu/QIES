@@ -1,6 +1,0 @@
-login
-planner
-sellticket
-00000
-logout
-exit
