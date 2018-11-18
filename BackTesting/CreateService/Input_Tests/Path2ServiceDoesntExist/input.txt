@@ -1,0 +1,8 @@
+login
+planner
+createservice
+11111
+18112018
+test
+logout
+exit
