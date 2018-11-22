@@ -30,17 +30,26 @@ do
     outputcsf="$root/Output_Tests/${testname}centralServices.txt"
     outputvsf="$root/Output_Tests/${testname}validServices.txt"
 
+    cat "centralServices.txt" > $outputcsf
+    echo "" > $outputvsf    
+
     java -jar ${exepath} > "/dev/null" 2>&1
-    cat "newCentralServices.txt" > $outputcsf
-    cat "validServices.txt" > $outputvsf
-    rm "newCentralServices.txt"
-    rm "validServices.txt"
+
+    if [ -f "newCentralServices.txt" ]; then
+        cat "newCentralServices.txt" > $outputcsf
+        rm "newCentralServices.txt"
+    fi
+    if [ -f "validServices.txt" ]; then
+        cat "validServices.txt" > $outputvsf
+        rm "validServices.txt"
+    fi
 
     diff "$expectedcsf" "$outputcsf" > "/dev/null"
     diffReturnCSF=$?
     diff "$expectedvsf" "$outputvsf" > "/dev/null"
     diffReturnVSF=$? 
     
+
     if (( $diffReturnCSF == 0 && $diffReturnVSF == 0 )); then
         echo "Pass : $testname" >> $testSummaryFile
     else
