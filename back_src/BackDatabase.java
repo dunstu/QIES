@@ -32,14 +32,14 @@ public class BackDatabase {
         String[] attributes;
         try (BufferedReader reader = Files.newBufferedReader(file)) {
             line = reader.readLine();
-            while (line != null) {
+            while (line != null && line.length() != 0) {
                 attributes = line.split(" ");
                 this.centralServices.add(new Service(attributes[0], attributes[1], attributes[2], attributes[3]));
                 line = reader.readLine();
             }
         }
         catch (IOException err) {
-            System.err.println("Error reading in valid services file:");
+            System.err.println("Error reading in central services file:");
             System.err.println(err.getMessage());
         }
 

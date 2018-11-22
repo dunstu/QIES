@@ -21,7 +21,7 @@ public class BackParser {
                         System.out.println(String.format("Error: Service Number %s Already Exists", serviceNum1));
                         break;
                     }
-                    Service s = new Service(serviceNum1, 1000, 0, serviceName);
+                    Service s = new Service(serviceNum1, 30, 0, serviceName);
                     data.addCentralService(s);
                     break;
 
