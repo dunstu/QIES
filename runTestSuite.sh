@@ -2,7 +2,7 @@
 
 exe=frontendtest.jar
 
-cd ./src
+cd ./front_src
 
 $(javac -d ../bin Interface.java Parser.java Database.java)
 
@@ -12,7 +12,7 @@ $(jar cfe ${exe} Interface *)
 
 #java -jar bin/frontendtest.jar
 
-cd ../Testing
+cd ../FrontTesting
 
 echo "" > testSummary.txt
 
