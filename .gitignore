@@ -8,4 +8,5 @@ transactionSummary.txt
 /Testing/Output_Tests/*/Output.txt
 Testing/testSummary.txt
 newCentralServices.txt
-validServices.txt
+**/BackTesting/*/*/*/validServices.txt
+/FrontTesting/validServices.txt
