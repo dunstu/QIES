@@ -6,8 +6,8 @@ public class BackParser {
 
         for (String transaction : data.mergedTransactionSummary) {
             transactionParts = transaction.split(" ");
-            if (transactionParts[0].equals("EOS"))
-                break;
+            //if (transactionParts[0].equals("EOS"))
+            //    break;
 
             String transType = transactionParts[0];
             String serviceNum1 = transactionParts[1];
