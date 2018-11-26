@@ -27,11 +27,9 @@ backexe=${qiesroot}/bin/${backname}
 
 # For each console
 for d in $qiesroot/IntegrationWorkspace/console*; do
-    echo $d
     # run front end with input in ./input
     cd $d
-    echo $PWD
-    java -jar $frontexe < ./inputs/day${day} > "/dev/null" 
+    java -jar $frontexe < ./inputs/day${day}
     cat "transactionSummary.txt" >> $mts
 done
 
