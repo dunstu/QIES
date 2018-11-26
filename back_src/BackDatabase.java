@@ -72,7 +72,7 @@ public class BackDatabase {
     }
 
     public void writeCentralServicesFile() {
-        Path file = Paths.get("newCentralServices.txt");
+        Path file = Paths.get("centralServices.txt");
         try (BufferedWriter writer = Files.newBufferedWriter(file)) {
             for (Service line : this.centralServices) {
                 writer.write(line+"\n");

@@ -12,21 +12,21 @@ fi
 
 # Compile front office
 frontname=frontend.jar
+frontexe=${qiesroot}/bin/${frontname}
 cd $qiesroot/front_src
-$(javac -d ../bin Interface.java Parser.java Database.java)
+$(javac -d ${qiesroot}/bin Interface.java Parser.java Database.java)
 cd $qiesroot/bin 
 $(jar cfe ${frontname} Interface *)
 rm *.class
-frontexe=${qiesroot}/bin/${frontname}
 
 # Compile back office
 backname=backend.jar
+backexe=${qiesroot}/bin/${backname}
 cd $qiesroot/back_src
-$(javac -d ../bin BackParser.java BackDatabase.java Service.java)
+$(javac -d ${qiesroot}/bin BackParser.java BackDatabase.java Service.java)
 cd $qiesroot/bin
 $(jar cfe ${backname} BackParser BackParser.class BackDatabase.class Service.class)
 rm *.class
-backexe=${qiesroot}/bin/${backname}
 
 # For each console
 for d in $qiesroot/IntegrationWorkspace/console*; do
@@ -36,6 +36,17 @@ for d in $qiesroot/IntegrationWorkspace/console*; do
     cat "transactionSummary.txt" >> $mts
 done
 
-# Run back office    
+# Run back office
+cd $qiesroot/IntegrationWorkspace/
+
+if ! [[ -f centralServices.txt ]]; then
+    touch centralServices.txt
+fi
+
+java -jar ${backexe} > "/dev/null"
+
+
+
+
 
     
