@@ -6,6 +6,9 @@ scriptroot=$(dirname "$(readlink -f "$0")")
 cd $scriptroot/..
 qiesroot=$PWD
 mts=$qiesroot/IntegrationWorkspace/transactionSummary.txt
+if [[ -f $mts ]]; then
+    rm $mts
+fi
 
 # Compile front office
 frontname=frontend.jar
@@ -29,7 +32,7 @@ backexe=${qiesroot}/bin/${backname}
 for d in $qiesroot/IntegrationWorkspace/console*; do
     # run front end with input in ./input
     cd $d
-    java -jar $frontexe < ./inputs/day${day}
+    java -jar $frontexe < ./inputs/day${day} > "/dev/null"
     cat "transactionSummary.txt" >> $mts
 done
 
