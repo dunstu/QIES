@@ -59,7 +59,9 @@ public class BackDatabase {
         try (BufferedReader reader = Files.newBufferedReader(file)) {
             line = reader.readLine();
             while (line != null) {
-                this.mergedTransactionSummary.add(line);
+                if (!line.matches("EOS(.*)")) { 
+                    this.mergedTransactionSummary.add(line);
+                }
                 line = reader.readLine();
             }
         }
