@@ -1,6 +1,2 @@
-10000 30 0 Toronto
-10001 30 0 Calgary
 20000 30 0 Montreal
-20002 30 0 Kingston
 30000 30 0 Detroit
-30002 30 0 Ottawa
