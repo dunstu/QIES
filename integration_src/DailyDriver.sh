@@ -2,7 +2,7 @@
 # Program takes one integer argument: the day of the week [1, 5]
 day="$1"
 
-scriptroot=$(dirname "$(readlink -f "$0")")
+scriptroot=$(dirname "$(readlink -f $0)")
 cd $scriptroot/..
 qiesroot=$PWD
 mts=$qiesroot/IntegrationWorkspace/transactionSummary.txt
