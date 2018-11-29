@@ -45,8 +45,3 @@ fi
 
 java -jar ${backexe} > "/dev/null"
 
-
-
-
-
-    
