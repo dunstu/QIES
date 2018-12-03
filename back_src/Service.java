@@ -31,7 +31,7 @@ public class Service {
 
     // Service is selling tickets
     public void sellTickets(Integer newTickets) {
-        this.ticketsSold += ticketsSold;
+        this.ticketsSold += newTickets;
     }
 
     // Service has its tickets being changed to another service
