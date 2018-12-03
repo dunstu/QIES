@@ -10,7 +10,7 @@ if [[ -f $mts ]]; then
     rm $mts
 fi
 
-# Compile front office
+# Compile front office if it does not already exist
 frontname=frontend.jar
 frontexe=${qiesroot}/bin/${frontname}
 if ! [[ -f $frontexe ]]; then  
@@ -21,7 +21,7 @@ if ! [[ -f $frontexe ]]; then
 	rm *.class
 fi
 
-# Compile back office
+# Compile back office if it does not already exist
 backname=backend.jar
 backexe=${qiesroot}/bin/${backname}
 if ! [[ -f $backexe ]]; then
@@ -40,6 +40,7 @@ for d in $qiesroot/IntegrationWorkspace/console*; do
     cat "transactionSummary.txt" >> $mts
 done
 
+echo " - MTS - "
 cat $mts
 
 # Run back office
@@ -51,3 +52,9 @@ fi
 
 java -jar ${backexe} > "/dev/null"
 
+echo " - CSF - "
+cat centralServices.txt
+echo " - VSF - "
+cat validServices.txt
+
+echo ""
