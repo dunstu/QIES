@@ -1,7 +1,7 @@
 login
 agent
-sellticket
-30001
+cancelticket
+30002
 1
 logout
 exit

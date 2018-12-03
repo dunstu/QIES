@@ -2,12 +2,25 @@
 # Program takes one integer argument: the day of the week [1, 5]
 day="$1"
 
+# Record where the file is being run in the filesystem
 scriptroot=$(dirname "$(readlink -f $0)")
 cd $scriptroot/..
 qiesroot=$PWD
+
+# Record the location of the Merged Transaction Summary File
 mts=$qiesroot/IntegrationWorkspace/transactionSummary.txt
-if [[ -f $mts ]]; then
+if [[ -f $mts ]]; then  # Clean the directory of an old mts
     rm $mts
+fi
+# Record the location of the Valid Services File
+vsf=$qiesroot/IntegrationWorkspace/validServices.txt
+if ! [[ -f $vsf ]]; then  # If a valid services file doesnt exist, create an empty one
+    echo "00000" > $vsf
+fi
+# Record the location of the Central Services File
+csf=$qiesroot/IntegrationWorkspace/centralServices.txt
+if ! [[ -f $csf ]]; then  # If a central services file does not exist, create an empty one
+    echo "" > $csf
 fi
 
 # Compile front office if it does not already exist
@@ -40,21 +53,18 @@ for d in $qiesroot/IntegrationWorkspace/console*; do
     cat "transactionSummary.txt" >> $mts
 done
 
+# Display the Merged Transaction Summary File
 echo " - MTS - "
 cat $mts
 
-# Run back office
+# Run Back Office
 cd $qiesroot/IntegrationWorkspace/
-
-if ! [[ -f centralServices.txt ]]; then
-    touch centralServices.txt
-fi
-
 java -jar ${backexe} > "/dev/null"
 
+# Display the Central Services and Valid Services Files
 echo " - CSF - "
-cat centralServices.txt
+cat $csf
 echo " - VSF - "
-cat validServices.txt
-
+cat $vsf
 echo ""
+
