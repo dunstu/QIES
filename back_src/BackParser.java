@@ -27,7 +27,7 @@ public class BackParser {
 
                 case "DEL":
                     Service serviceDel = data.findService(serviceNum1);
-                    if(serviceDel.getServiceName().equals(serviceName) && serviceDel.getTicketsSold() == 0) {
+                    if(serviceDel.getServiceName().equals(serviceName)) {
                             data.centralServices.remove(serviceDel);
                     }
                     break;
